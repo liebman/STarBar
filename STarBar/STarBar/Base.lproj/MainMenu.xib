@@ -23,7 +23,7 @@
                 <menuItem title="Connect to SmartThings" id="3r8-z6-ahe">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="login:" target="Voe-Tx-rLC" id="Z8N-P3-UzW"/>
+                        <action selector="connect:" target="Voe-Tx-rLC" id="3fb-L0-wso"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="q6O-Rh-wrA"/>
@@ -34,7 +34,7 @@
                             <menuItem title="Disconnect from SmartThings" id="2CY-rH-Ss7">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="login:" target="Voe-Tx-rLC" id="dHA-JO-DkV"/>
+                                    <action selector="disconnect:" target="Voe-Tx-rLC" id="LCD-Ap-oFD"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -48,7 +48,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="73.5" y="66.5"/>
+            <point key="canvasLocation" x="-172" y="-106.5"/>
         </menu>
     </objects>
 </document>

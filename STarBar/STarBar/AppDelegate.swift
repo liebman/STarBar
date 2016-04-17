@@ -7,13 +7,15 @@
 //
 
 import Cocoa
+import Alamofire
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var statusMenu: NSMenu!
-
+    
+    var deviceItems = [NSMenuItem]()
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -23,16 +25,64 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = statusMenu
     }
     
-    @IBAction func login(sender: NSMenuItem) {
+    func jsonLoaded(json: String) {
+        print("JSON: \(json)")
+    }
+    
+    func jsonFailed(error: NSError) {
+        print("Error: \(error.localizedDescription)")
+    }
+    
+    @IBAction func connect(sender: NSMenuItem) {
         
         // Put SmartThings login stuff here
-        testPopup()
+        menuDeviceInit()
+        
+        Alamofire.request(.GET, "https://httpbin.org/get", parameters: ["foo": "bar"])
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
+        }
         
     }
     
+    @IBAction func disconnect(sender: NSMenuItem) {
+        menuDeviceBreakdown()
+    }
     
     @IBAction func exit(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
+    }
+    
+    func menuDeviceInit(){
+        
+        deviceItems.append(buildDeviceMenuItem("Test1"))
+        deviceItems.append(buildDeviceMenuItem("Test2"))
+        deviceItems.append(buildDeviceMenuItem("Test3"))
+    
+        for item in deviceItems {
+            statusMenu.insertItem(item, atIndex: 0)
+        }
+    }
+    
+    func menuDeviceBreakdown(){
+        for item in deviceItems {
+            statusMenu.removeItem(item)
+        }
+        
+        deviceItems.removeAll()
+    }
+    
+    func buildDeviceMenuItem(itemText: String) -> NSMenuItem {
+        let newItem = NSMenuItem.init()
+        newItem.title = itemText
+        return newItem
     }
     
     func testPopup(){
