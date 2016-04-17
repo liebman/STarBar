@@ -21,7 +21,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         icon?.template = true
         statusItem.image = icon
         statusItem.menu = statusMenu
+        
+        
     }
+    
+    @IBAction func login(sender: NSMenuItem) {
+        
+    }
+    
     
     @IBAction func menuClicked(sender: NSMenuItem) {
         

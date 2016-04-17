@@ -669,14 +669,28 @@
         </menu>
         <menu id="9de-5r-aqG">
             <items>
-                <menuItem title="Fuck shit up" id="6k4-NN-m6W">
+                <menuItem title="Hidden Files Test" id="6k4-NN-m6W">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="menuClicked:" target="Voe-Tx-rLC" id="tff-GL-vXK"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="V4O-u3-JaO"/>
+                <menuItem title="Settings" id="1ym-5a-Y4m">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Settings" id="QiH-xe-Rgn">
+                        <items>
+                            <menuItem title="Login to Smartthings" id="2CY-rH-Ss7">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="login:" target="Voe-Tx-rLC" id="dHA-JO-DkV"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
             </items>
-            <point key="canvasLocation" x="50.5" y="-31.5"/>
+            <point key="canvasLocation" x="73.5" y="66.5"/>
         </menu>
     </objects>
 </document>
