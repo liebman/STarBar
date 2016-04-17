@@ -21,41 +21,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         icon?.template = true
         statusItem.image = icon
         statusItem.menu = statusMenu
-        
-        
     }
     
     @IBAction func login(sender: NSMenuItem) {
         
+        // Put SmartThings login stuff here
+        testPopup()
+        
     }
+    
     
     @IBAction func exit(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
     }
     
-    @IBAction func menuClicked(sender: NSMenuItem) {
-        
-        let task = NSTask()
-        task.launchPath = "/usr/bin/defaults"
-        
-        if(sender.state == NSOnState){
-            sender.state = NSOffState
-            task.arguments = ["write", "com.apple.finder", "AppleShowAllFiles", "NO"]
-        }else{
-            sender.state = NSOnState
-            task.arguments = ["write", "com.apple.finder", "AppleShowAllFiles", "YES"]
-        }
-        
-        task.launch()
-        task.waitUntilExit()
-        
-        let killTask = NSTask()
-        killTask.launchPath = "/usr/bin/killall"
-        killTask.arguments = ["Finder"]
-        killTask.launch()
-        
+    func testPopup(){
+        let myPopup: NSAlert = NSAlert()
+        myPopup.messageText = "Test"
+        myPopup.runModal()
     }
-
 
 }
 
