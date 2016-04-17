@@ -29,6 +29,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
     }
     
+    @IBAction func exit(sender: NSMenuItem) {
+        NSApplication.sharedApplication().terminate(self)
+    }
     
     @IBAction func menuClicked(sender: NSMenuItem) {
         

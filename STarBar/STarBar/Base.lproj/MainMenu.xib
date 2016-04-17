@@ -689,6 +689,13 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Exit" id="p59-Ql-Xgl">
+                    <attributedString key="attributedTitle"/>
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="exit:" target="Voe-Tx-rLC" id="mHe-mi-mxE"/>
+                    </connections>
+                </menuItem>
             </items>
             <point key="canvasLocation" x="73.5" y="66.5"/>
         </menu>
