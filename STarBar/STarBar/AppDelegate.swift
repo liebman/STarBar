@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let settings: SettingsController! = SettingsController(windowNibName: "SettingsWindow")
     
     var deviceItems = [NSMenuItem]()
+    var responseJSON = NSDictionary()
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let userPrefs = NSUserDefaults.standardUserDefaults()
 
@@ -37,7 +38,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func openSettings(sender: NSMenuItem) {
+        settings.window?.center()
         settings.showWindow(nil)
+    }
+    
+    func menuDeviceInit(JSON : NSDictionary){
+        
+        let devices = JSON.objectForKey("deviceList") as! Array<Dictionary<String, AnyObject>>
+        
+        for device in devices {
+            deviceItems.append(buildDeviceMenuItem(device["name"] as! String))
+        }
+        
+        print(devices)
+        
+        statusMenu.insertItem(NSMenuItem.separatorItem(), atIndex: 0)
+        
+        for item in deviceItems {
+            statusMenu.insertItem(item, atIndex: 0)
+        }
     }
     
     @IBAction func connect(sender: NSMenuItem) {
@@ -48,17 +67,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if (id != "") {
             let reqURL = "https://graph.api.smartthings.com/api/smartapps/installations/\(id)/devices?access_token=\(token)"
             
-            Alamofire.request(.GET, reqURL).responseJSON { response in
-                let JSON = response.result.value
-                print("JSON: \(JSON)")
+            Alamofire.request(.GET, reqURL).responseJSON
+                { response in switch response.result {
+                case .Success(let JSON):
+                    let responseJSON = JSON as! NSDictionary
+                    self.menuDeviceInit(responseJSON)
+                case .Failure(let error):
+                    print("Request failed with error: \(error)")
+                }
             }
-            
-            menuDeviceInit()
-            
         }
-        else {// Show login
-        }
-        
     }
     
     @IBAction func disconnect(sender: NSMenuItem) {
@@ -67,19 +85,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func exit(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
-    }
-    
-    func menuDeviceInit(){
-        
-        deviceItems.append(buildDeviceMenuItem("Test1"))
-        deviceItems.append(buildDeviceMenuItem("Test2"))
-        deviceItems.append(buildDeviceMenuItem("Test3"))
-        
-        statusMenu.insertItem(NSMenuItem.separatorItem(), atIndex: 0)
-    
-        for item in deviceItems {
-            statusMenu.insertItem(item, atIndex: 0)
-        }
     }
     
     func menuDeviceBreakdown(){
