@@ -75,21 +75,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 var reqURL = String()
                 
-                if(attributes["switch"] as! String == "off"){
-                    reqURL = "\(rootURL)\(id)/\(deviceId)/command/on?access_token=\(token)"
-                }else{
-                    reqURL = "\(rootURL)\(id)/\(deviceId)/command/off?access_token=\(token)"
-                }
-                
-                Alamofire.request(.POST, reqURL).responseJSON{
-                    response in switch response.result {
-                    case .Success(let JSON):
-                        print("Success: \(JSON)")
-                        self.connect(NSMenuItem())
-                    case .Failure(let error):
-                        print("Request failed with error: \(error)")
+                if(attributes["switch"] != nil){
+                    if(attributes["switch"] as! String == "off"){
+                        reqURL = "\(rootURL)\(id)/\(deviceId)/command/on?access_token=\(token)"
+                    }else{
+                        reqURL = "\(rootURL)\(id)/\(deviceId)/command/off?access_token=\(token)"
+                    }
+                    
+                    Alamofire.request(.POST, reqURL).responseJSON{
+                        response in switch response.result {
+                        case .Success(let JSON):
+                            print("Success: \(JSON)")
+                            self.connect(NSMenuItem())
+                        case .Failure(let error):
+                            print("Request failed with error: \(error)")
+                        }
                     }
                 }
+                
             }
         }
     }
