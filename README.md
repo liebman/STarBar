@@ -3,7 +3,7 @@
 
 :zap: This is a work in progress, thanks for your patience! :zap:
 
-This project makes use of the [homebridge-smartthings](https://github.com/pdlove/homebridge-smartthings) 'JSON Complete API' application for the SmartThings hub. Please follow these instructions to install that:
+This project makes use of the [homebridge-smartthings](https://github.com/pdlove/homebridge-smartthings) 'JSON Complete API' application for the SmartThings hub. If you do not already have this installed, please follow these instructions to install it.
 
 > Log into your SmartThings account at https://graph.api.smartthings.com/
 Goto "My SmartApps"
