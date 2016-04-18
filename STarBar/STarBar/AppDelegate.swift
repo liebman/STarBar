@@ -15,10 +15,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var statusMenu: NSMenu!
     
+    let rootURL = "https://graph.api.smartthings.com/api/smartapps/installations/"
+    var id = String()
+    var token = String()
+    
     let settings: SettingsController! = SettingsController(windowNibName: "SettingsWindow")
     
     var deviceItems = [NSMenuItem]()
-    var responseJSON = NSDictionary()
+    var devices = Array<Dictionary<String, AnyObject>>()
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let userPrefs = NSUserDefaults.standardUserDefaults()
 
@@ -27,6 +31,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         icon?.template = true
         statusItem.image = icon
         statusItem.menu = statusMenu
+        id = userPrefs.objectForKey("id") as! String
+        token = userPrefs.objectForKey("token") as! String
+        connect(NSMenuItem())
     }
     
     func jsonLoaded(json: String) {
@@ -42,15 +49,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         settings.showWindow(nil)
     }
     
-    func menuDeviceInit(JSON : NSDictionary){
-        
-        let devices = JSON.objectForKey("deviceList") as! Array<Dictionary<String, AnyObject>>
-        
+    func menuDeviceInit(){
+    
         for device in devices {
-            deviceItems.append(buildDeviceMenuItem(device["name"] as! String))
+            deviceItems.append(buildDeviceMenuItem(device))
         }
-        
-        print(devices)
         
         statusMenu.insertItem(NSMenuItem.separatorItem(), atIndex: 0)
         
@@ -58,20 +61,42 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             statusMenu.insertItem(item, atIndex: 0)
         }
     }
+
+    func menuItemSelector(sender : NSMenuItem!){
+        for device in devices {
+            if(device["name"] as! String == sender.title){
+                print(device["attributes"] as! NSDictionary)
+                print(device["commands"] as! NSDictionary)
+                print(device["deviceid"] as! String)
+                
+                let deviceId = device["deviceid"] as! String
+                
+                let reqURL = "\(rootURL)\(id)/\(deviceId)/command/on?access_token=\(token)"
+                Alamofire.request(.POST, reqURL).responseJSON{
+                    response in switch response.result {
+                    case .Success(let JSON):
+                        print("Success: \(JSON)")
+                    case .Failure(let error):
+                        print("Request failed with error: \(error)")
+                    }
+                }
+            }
+        }
+    }
     
     @IBAction func connect(sender: NSMenuItem) {
         
-        let id = userPrefs.objectForKey("id") as! String
-        let token = userPrefs.objectForKey("token") as! String
+        
         
         if (id != "") {
-            let reqURL = "https://graph.api.smartthings.com/api/smartapps/installations/\(id)/devices?access_token=\(token)"
+            let reqURL = "\(rootURL)\(id)/devices?access_token=\(token)"
             
             Alamofire.request(.GET, reqURL).responseJSON
                 { response in switch response.result {
                 case .Success(let JSON):
                     let responseJSON = JSON as! NSDictionary
-                    self.menuDeviceInit(responseJSON)
+                    self.devices = responseJSON.objectForKey("deviceList") as! Array<Dictionary<String, AnyObject>>
+                    self.menuDeviceInit()
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
@@ -96,9 +121,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         deviceItems.removeAll()
     }
     
-    func buildDeviceMenuItem(itemText: String) -> NSMenuItem {
+    func buildDeviceMenuItem(device: Dictionary<String, AnyObject>) -> NSMenuItem {
         let newItem = NSMenuItem.init()
-        newItem.title = itemText
+        newItem.title = device["name"] as! String
+        newItem.target = self
+        newItem.action = #selector(AppDelegate.menuItemSelector)
+        newItem.enabled = true
         return newItem
     }
     
