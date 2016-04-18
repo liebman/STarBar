@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let rootURL = "https://graph.api.smartthings.com/api/smartapps/installations/"
     var id = String()
     var token = String()
+    var refreshOnly = Bool()
     
     let settings: SettingsController! = SettingsController(windowNibName: "SettingsWindow")
     
@@ -69,13 +70,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 print(device["commands"] as! NSDictionary)
                 print(device["deviceid"] as! String)
                 
+                let attributes = device["attributes"] as! NSDictionary
                 let deviceId = device["deviceid"] as! String
                 
-                let reqURL = "\(rootURL)\(id)/\(deviceId)/command/on?access_token=\(token)"
+                var reqURL = String()
+                
+                if(attributes["switch"] as! String == "off"){
+                    reqURL = "\(rootURL)\(id)/\(deviceId)/command/on?access_token=\(token)"
+                }else{
+                    reqURL = "\(rootURL)\(id)/\(deviceId)/command/off?access_token=\(token)"
+                }
+                
                 Alamofire.request(.POST, reqURL).responseJSON{
                     response in switch response.result {
                     case .Success(let JSON):
                         print("Success: \(JSON)")
+                        self.connect(NSMenuItem())
                     case .Failure(let error):
                         print("Request failed with error: \(error)")
                     }
@@ -86,8 +96,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func connect(sender: NSMenuItem) {
         
-        
-        
         if (id != "") {
             let reqURL = "\(rootURL)\(id)/devices?access_token=\(token)"
             
@@ -96,7 +104,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 case .Success(let JSON):
                     let responseJSON = JSON as! NSDictionary
                     self.devices = responseJSON.objectForKey("deviceList") as! Array<Dictionary<String, AnyObject>>
-                    self.menuDeviceInit()
+                    
+                    if(!self.refreshOnly){
+                        self.menuDeviceInit()
+                        self.refreshOnly = true
+                    }
+                    
                 case .Failure(let error):
                     print("Request failed with error: \(error)")
                 }
