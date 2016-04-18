@@ -5,10 +5,6 @@
 
 This project makes use of the [homebridge-smartthings](https://github.com/pdlove/homebridge-smartthings) 'JSON Complete API' application for the SmartThings hub. Please follow these instructions to install that:
 
-> A custom JSON API has been written to interface with Smartthings. If you have any other than the one called "" then you need to install the new one. This plugin will NOT work with the original "JSON API" due to a lack of features.
-
-> If you installed the previous update that doesn't allow selecting devices, you need to goto "My Locations" and then "List Smartapps" to remove the multiple installation.
-
 > Log into your SmartThings account at https://graph.api.smartthings.com/
 Goto "My SmartApps"
 Click on Settings and add the repository with Owner of "pdlove" and name of "homebridge-smartthings" and branch of "master" and then click save.
