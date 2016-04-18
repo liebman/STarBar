@@ -1,4 +1,4 @@
-# STarBar
+# :star: STarBar :star:
 ## A Mac Menu Bar App for controlling your SmartThings Hub
 
 :zap: This is a work in progress, thanks for your patience! :zap:
