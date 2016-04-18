@@ -20,17 +20,23 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="9de-5r-aqG">
             <items>
-                <menuItem title="Connect to SmartThings" id="3r8-z6-ahe">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="connect:" target="Voe-Tx-rLC" id="3fb-L0-wso"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="q6O-Rh-wrA"/>
                 <menuItem title="Settings" id="1ym-5a-Y4m">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Settings" id="QiH-xe-Rgn">
                         <items>
+                            <menuItem title="Connection Information" id="75Q-lo-1Qf">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="openSettings:" target="Voe-Tx-rLC" id="oNv-jM-XBB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="Xte-00-Ksc"/>
+                            <menuItem title="Connect to SmartThings" id="3r8-z6-ahe">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="connect:" target="Voe-Tx-rLC" id="3fb-L0-wso"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Disconnect from SmartThings" id="2CY-rH-Ss7">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
@@ -48,7 +54,7 @@
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="-172" y="-106.5"/>
+            <point key="canvasLocation" x="-162" y="-65.5"/>
         </menu>
     </objects>
 </document>
