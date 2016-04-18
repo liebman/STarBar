@@ -3,6 +3,8 @@
 
 :zap: This is a work in progress, thanks for your patience! :zap:
 
+### Step 1
+
 This project makes use of the [homebridge-smartthings](https://github.com/pdlove/homebridge-smartthings) 'JSON Complete API' application for the SmartThings hub. If you do not already have this installed, please follow these instructions to install it.
 
 > Log into your SmartThings account at https://graph.api.smartthings.com/
@@ -27,5 +29,7 @@ Some devices, mainly Virtual Switches, only have the Switch Capability and are i
 If you select the same device in multiple categories it will only be shown once in HomeKit, so you can safely check them all in all groups.
 If a device isn't listed, let me know by submitting an issue on GitHub.
 Tap Done and then Done.
+
+### Step 2
 
 Place the 'app_id' and 'access_token' codes in the Connection Information window of STarBar. To get this information, open SmartThings on your phone, goto "My Home">"SmartApps">"JSON Complete API" and tap on Config.
