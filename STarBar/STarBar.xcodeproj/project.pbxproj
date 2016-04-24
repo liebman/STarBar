@@ -13,6 +13,8 @@
 		C34474D91CC4661D00903692 /* SettingsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = C34474D81CC4661D00903692 /* SettingsWindow.xib */; };
 		C34474DB1CC468D600903692 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34474DA1CC468D600903692 /* Settings.swift */; };
 		C34474DE1CC473B600903692 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C331C4561CC34E650007401C /* AppDelegate.swift */; };
+		C3758D231CCD56F500DE9673 /* SmartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3758D211CCD56F500DE9673 /* SmartMenu.swift */; };
+		C3758D241CCD56F500DE9673 /* SmartMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3758D221CCD56F500DE9673 /* SmartMenu.xib */; };
 		EC31F91A0E4B1D821D8780F0 /* Pods_STarBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B560CE2AA7FBADC7058408F7 /* Pods_STarBar.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		C34474D61CC4367E00903692 /* SmartThingsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartThingsAPI.swift; sourceTree = "<group>"; };
 		C34474D81CC4661D00903692 /* SettingsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsWindow.xib; sourceTree = "<group>"; };
 		C34474DA1CC468D600903692 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		C3758D211CCD56F500DE9673 /* SmartMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartMenu.swift; sourceTree = "<group>"; };
+		C3758D221CCD56F500DE9673 /* SmartMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmartMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,8 @@
 		C331C4551CC34E650007401C /* STarBar */ = {
 			isa = PBXGroup;
 			children = (
+				C3758D211CCD56F500DE9673 /* SmartMenu.swift */,
+				C3758D221CCD56F500DE9673 /* SmartMenu.xib */,
 				C331C4561CC34E650007401C /* AppDelegate.swift */,
 				C331C4581CC34E650007401C /* Assets.xcassets */,
 				C331C45A1CC34E650007401C /* MainMenu.xib */,
@@ -154,6 +160,7 @@
 			files = (
 				C331C4591CC34E650007401C /* Assets.xcassets in Resources */,
 				C331C45C1CC34E650007401C /* MainMenu.xib in Resources */,
+				C3758D241CCD56F500DE9673 /* SmartMenu.xib in Resources */,
 				C34474D91CC4661D00903692 /* SettingsWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +222,7 @@
 			files = (
 				C34474DE1CC473B600903692 /* AppDelegate.swift in Sources */,
 				C34474DB1CC468D600903692 /* Settings.swift in Sources */,
+				C3758D231CCD56F500DE9673 /* SmartMenu.swift in Sources */,
 				C34474D71CC4367E00903692 /* SmartThingsAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

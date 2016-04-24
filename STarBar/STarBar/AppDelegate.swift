@@ -19,22 +19,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var id = String()
     var token = String()
     var refreshOnly = Bool()
-    
+    let popover = NSPopover()
     let settings: SettingsController! = SettingsController(windowNibName: "SettingsWindow")
-    
-    var deviceItems = [NSMenuItem]()
     var devices = Array<Dictionary<String, AnyObject>>()
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let userPrefs = NSUserDefaults.standardUserDefaults()
-
+    
+    //Todo: Refactor menu code
+    var deviceItems = [NSMenuItem]()
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         let icon = NSImage(named: "statusIcon")
         icon?.template = true
-        statusItem.image = icon
-        statusItem.menu = statusMenu
+        if let button = statusItem.button {
+            button.image = icon
+            button.action = #selector(AppDelegate.togglePopover(_:))
+        }
+        
         id = userPrefs.objectForKey("id") as! String
         token = userPrefs.objectForKey("token") as! String
-        connect(NSMenuItem())
+        
+        popover.contentViewController = SmartMenu(nibName: "SmartMenu", bundle: nil)
+    }
+    
+    func showPopover(sender: AnyObject?) {
+        if let button = statusItem.button {
+            
+            popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
+        }
+    }
+    
+    func closePopover(sender: AnyObject?) {
+        popover.performClose(sender)
+    }
+    
+    func togglePopover(sender: AnyObject?) {
+        if popover.shown {
+            closePopover(sender)
+        } else {
+            showPopover(sender)
+        }
     }
     
     func jsonLoaded(json: String) {
@@ -45,11 +69,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("Error: \(error.localizedDescription)")
     }
     
+    @IBAction func connect(sender: NSMenuItem) {
+        
+        if (id != "") {
+            let reqURL = "\(rootURL)\(id)/devices?access_token=\(token)"
+            
+            Alamofire.request(.GET, reqURL).responseJSON
+                { response in switch response.result {
+                case .Success(let JSON):
+                    let responseJSON = JSON as! NSDictionary
+                    self.devices = responseJSON.objectForKey("deviceList") as! Array<Dictionary<String, AnyObject>>
+                    
+                    if(!self.refreshOnly){
+                        
+                        //Todo: Refactor menu code
+                        self.menuDeviceInit()
+                        
+                        self.refreshOnly = true
+                    }
+                    
+                case .Failure(let error):
+                    print("Request failed with error: \(error)")
+                    }
+            }
+        }
+    }
+    
+    //Todo: Refactor menu code
+    @IBAction func exit(sender: NSMenuItem) {
+        NSApplication.sharedApplication().terminate(self)
+    }
+    
+    //Todo: Refactor menu code
     @IBAction func openSettings(sender: NSMenuItem) {
         settings.window?.center()
         settings.showWindow(nil)
     }
     
+    //Todo: Refactor menu code
     func menuDeviceInit(){
     
         for device in devices {
@@ -63,6 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    //Todo: Refactor menu code
     func menuItemSelector(sender : NSMenuItem!){
         for device in devices {
             if(device["name"] as! String == sender.title){
@@ -97,37 +155,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func connect(sender: NSMenuItem) {
-        
-        if (id != "") {
-            let reqURL = "\(rootURL)\(id)/devices?access_token=\(token)"
-            
-            Alamofire.request(.GET, reqURL).responseJSON
-                { response in switch response.result {
-                case .Success(let JSON):
-                    let responseJSON = JSON as! NSDictionary
-                    self.devices = responseJSON.objectForKey("deviceList") as! Array<Dictionary<String, AnyObject>>
-                    
-                    if(!self.refreshOnly){
-                        self.menuDeviceInit()
-                        self.refreshOnly = true
-                    }
-                    
-                case .Failure(let error):
-                    print("Request failed with error: \(error)")
-                }
-            }
-        }
-    }
-    
+    //Todo: Refactor menu code
     @IBAction func disconnect(sender: NSMenuItem) {
         menuDeviceBreakdown()
     }
     
-    @IBAction func exit(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
-    }
-    
+    //Todo: Refactor menu code
     func menuDeviceBreakdown(){
         
         for item in deviceItems {
@@ -137,6 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         deviceItems.removeAll()
     }
     
+    //Todo: Refactor menu code
     func buildDeviceMenuItem(device: Dictionary<String, AnyObject>) -> NSMenuItem {
         let newItem = NSMenuItem.init()
         newItem.title = device["name"] as! String
@@ -144,12 +178,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         newItem.action = #selector(AppDelegate.menuItemSelector)
         newItem.enabled = true
         return newItem
-    }
-    
-    func testPopup(){
-        let myPopup: NSAlert = NSAlert()
-        myPopup.messageText = "Test"
-        myPopup.runModal()
     }
 
 }

@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:STarBar/SmartMenu.swift">
+   </FileRef>
+   <FileRef
+      location = "group:STarBar/SmartMenu.xib">
+   </FileRef>
+   <FileRef
       location = "group:STarBar.xcodeproj">
    </FileRef>
    <FileRef
