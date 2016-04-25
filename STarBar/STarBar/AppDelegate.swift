@@ -40,10 +40,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         popover.contentViewController = SmartMenu(nibName: "SmartMenu", bundle: nil)
         popover.animates = false
+        popover.behavior = NSPopoverBehavior.Transient
     }
-    
+
     func showPopover(sender: AnyObject?) {
         if let button = statusItem.button {
+            NSApp.activateIgnoringOtherApps(true)
             popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
         }
     }
