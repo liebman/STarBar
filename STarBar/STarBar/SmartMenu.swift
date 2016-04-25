@@ -9,9 +9,11 @@
 import Cocoa
 
 class SmartMenu: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
-
-    @IBOutlet weak var settingsIcon: NSImageView!
+    
+    let settings: SettingsController! = SettingsController(windowNibName: "SettingsWindow")
+    @IBOutlet weak var settingsIcon: NSButton!
     @IBOutlet weak var smartTable: NSTableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,11 @@ class SmartMenu: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
         smartTable.headerView = nil
         smartTable.setDelegate(self)
         smartTable.setDataSource(self)
+    }
+    
+    @IBAction func openSettings(sender: NSButton) {
+        settings.window?.center()
+        settings.showWindow(nil)
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {

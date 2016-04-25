@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SmartMenu" customModule="STarBar" customModuleProvider="target">
             <connections>
-                <outlet property="settingsIcon" destination="z0a-2j-dDz" id="QGi-IA-LH5"/>
+                <outlet property="settingsIcon" destination="3xQ-Ma-2vm" id="Gah-RT-Vub"/>
                 <outlet property="smartTable" destination="FIz-kO-3I6" id="Udw-al-rSw"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
@@ -24,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="268" height="347"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" headerView="TaO-AY-Fug" viewBased="YES" id="FIz-kO-3I6">
+                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="40" rowSizeStyle="automatic" headerView="TaO-AY-Fug" viewBased="YES" id="FIz-kO-3I6">
                                 <rect key="frame" x="0.0" y="0.0" width="268" height="324"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -37,7 +37,7 @@
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
-                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" enabled="NO" title="Text Cell" id="CRI-TI-WGs">
+                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" title="Text Cell" id="CRI-TI-WGs">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
@@ -87,10 +87,10 @@
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Dc8-Eo-kJB">
-                        <rect key="frame" x="1" y="330" width="266" height="16"/>
+                        <rect key="frame" x="0.0" y="7" width="0.0" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
-                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Dbd-lt-yqy">
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Dbd-lt-yqy">
                         <rect key="frame" x="224" y="17" width="15" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -107,18 +107,24 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z0a-2j-dDz">
-                    <rect key="frame" x="229" y="355" width="26" height="26"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="cog" id="U7D-Ri-BlQ"/>
-                </imageView>
                 <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="6Qy-H2-ich">
-                    <rect key="frame" x="0.0" y="344" width="268" height="5"/>
+                    <rect key="frame" x="0.0" y="344" width="268" height="4"/>
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <font key="titleFont" metaFont="system"/>
                 </box>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3xQ-Ma-2vm">
+                    <rect key="frame" x="236" y="355" width="19" height="21"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="cog" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="ZSC-B2-RGR">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="openSettings:" target="-2" id="QZy-XE-ty7"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="143" y="523.5"/>
+            <point key="canvasLocation" x="-157" y="298.5"/>
         </customView>
     </objects>
     <resources>

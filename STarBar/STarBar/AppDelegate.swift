@@ -20,7 +20,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var token = String()
     var refreshOnly = Bool()
     let popover = NSPopover()
-    let settings: SettingsController! = SettingsController(windowNibName: "SettingsWindow")
     var devices = Array<Dictionary<String, AnyObject>>()
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let userPrefs = NSUserDefaults.standardUserDefaults()
@@ -45,7 +44,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func showPopover(sender: AnyObject?) {
         if let button = statusItem.button {
-            
             popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
         }
     }
@@ -99,12 +97,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //Todo: Refactor menu code
     @IBAction func exit(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(self)
-    }
-    
-    //Todo: Refactor menu code
-    @IBAction func openSettings(sender: NSMenuItem) {
-        settings.window?.center()
-        settings.showWindow(nil)
     }
     
     //Todo: Refactor menu code

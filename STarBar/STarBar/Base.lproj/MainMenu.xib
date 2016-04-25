@@ -26,9 +26,6 @@
                         <items>
                             <menuItem title="Connection Information" id="75Q-lo-1Qf">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="openSettings:" target="Voe-Tx-rLC" id="oNv-jM-XBB"/>
-                                </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="Xte-00-Ksc"/>
                             <menuItem title="Connect to SmartThings" id="3r8-z6-ahe">
