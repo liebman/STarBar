@@ -40,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         token = userPrefs.objectForKey("token") as! String
         
         popover.contentViewController = SmartMenu(nibName: "SmartMenu", bundle: nil)
+        popover.animates = false
     }
     
     func showPopover(sender: AnyObject?) {
