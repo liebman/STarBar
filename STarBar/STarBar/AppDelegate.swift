@@ -97,11 +97,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     //Todo: Refactor menu code
-    @IBAction func exit(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(self)
-    }
-    
-    //Todo: Refactor menu code
     func menuDeviceInit(){
     
         for device in devices {
