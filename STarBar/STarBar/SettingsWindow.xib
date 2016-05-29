@@ -78,19 +78,6 @@ Gw
                             <action selector="close:" target="-2" id="3vs-FF-e7W"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PId-OX-8Wj">
-                        <rect key="frame" x="14" y="13" width="129" height="32"/>
-                        <buttonCell key="cell" type="push" title="Quit Star Bar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iDf-9f-MG4">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="quit:" target="-2" id="ngX-o1-Zsd"/>
-                        </connections>
-                    </button>
                 </subviews>
             </view>
             <connections>

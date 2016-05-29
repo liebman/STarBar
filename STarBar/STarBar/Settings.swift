@@ -40,8 +40,4 @@ class SettingsController : NSWindowController {
         close()
     }
     
-    @IBAction func quit(sender: AnyObject) {
-        close()
-        NSApplication.sharedApplication().terminate(self)
-    }
 }
