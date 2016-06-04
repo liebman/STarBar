@@ -15,6 +15,7 @@
 		C34474DE1CC473B600903692 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C331C4561CC34E650007401C /* AppDelegate.swift */; };
 		C3758D231CCD56F500DE9673 /* SmartMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3758D211CCD56F500DE9673 /* SmartMenu.swift */; };
 		C3758D241CCD56F500DE9673 /* SmartMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3758D221CCD56F500DE9673 /* SmartMenu.xib */; };
+		C3DCB7AE1CFAA38600FF67CE /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DCB7AD1CFAA38600FF67CE /* Connection.swift */; };
 		EC31F91A0E4B1D821D8780F0 /* Pods_STarBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B560CE2AA7FBADC7058408F7 /* Pods_STarBar.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		C34474DA1CC468D600903692 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		C3758D211CCD56F500DE9673 /* SmartMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartMenu.swift; sourceTree = "<group>"; };
 		C3758D221CCD56F500DE9673 /* SmartMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SmartMenu.xib; sourceTree = "<group>"; };
+		C3DCB7AD1CFAA38600FF67CE /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				C331C45D1CC34E650007401C /* Info.plist */,
 				C34474D61CC4367E00903692 /* SmartThingsAPI.swift */,
 				C34474DA1CC468D600903692 /* Settings.swift */,
+				C3DCB7AD1CFAA38600FF67CE /* Connection.swift */,
 			);
 			path = STarBar;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			files = (
 				C34474DE1CC473B600903692 /* AppDelegate.swift in Sources */,
 				C34474DB1CC468D600903692 /* Settings.swift in Sources */,
+				C3DCB7AE1CFAA38600FF67CE /* Connection.swift in Sources */,
 				C3758D231CCD56F500DE9673 /* SmartMenu.swift in Sources */,
 				C34474D71CC4367E00903692 /* SmartThingsAPI.swift in Sources */,
 			);
